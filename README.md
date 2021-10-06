@@ -4,9 +4,9 @@ Calculating extremal values for codimensions of unstable loci of SL_2 subgroups 
 
 Extremal Values for Codimensions of Unstable Loci
 
-Valdemar Tsanov (University of Bochum; Valdemar.Tsanov@rub.de)
+Valdemar Tsanov (University of Bochum; valdemar.tsanov at rub.de)
 
-Yana Staneva (University of Cologne; ystaneva@math.uni-koeln.de, yanastaneva8@gmail.com)
+Yana Staneva (University of Cologne; ystaneva at math.uni-koeln.de, yanastaneva8 at gmail.com)
 
 Date: August 2020
 
