@@ -59,19 +59,12 @@ def binary_a(n):
         binary[i]=b
     return binary
 
-# Function to compute the vectors h via the matrix M
+# Function to compute the vectors h
 def h_vector(n):
-    M = np.array([[1,2,3,2],
-                  [1,1,1,0],
-                  [0,1,1,0],
-                  [0,0,1,0]])
-    b = binary_a(n)
-    h_array=[]
-    for i in range(len(binary_a(n))):
-        h = np.dot(M, np.array([b[i]]).T)
-        h_array.append(np.asarray(h))
-    h_array.append(np.asarray([1,0,0,0]))
-    return h_array
+    funds = fundamental(n)
+    h = np.vstack([funds, funds.sum(axis=0)])
+    # print('h_array = %s' % h   ) 
+    return h
 
 # Function to represent the simple reflections in matrix form
 def matrix_form(elt):
@@ -106,12 +99,13 @@ def matrix_form(elt):
 # To reduce complexity, comment in or out the lines which generate the n-tuples of reflections needed
 generators = []
 all_possible_roots = []
+# Function to generate reflections
 def generate_reflections(n):
     for i in range(1, n+1):
         generators.append("r"+str(i))
     all_possible_roots.extend(generators)    
-#     for subset in itertools.product(generators, generators):
-#         all_possible_roots.append('*'.join(subset)) 
+    # for subset in itertools.product(generators, generators):
+    #     all_possible_roots.append('*'.join(subset)) 
     # for subset in itertools.product(generators, generators, generators):
     #     all_possible_roots.append('*'.join(subset))
     # for subset in itertools.product(generators, generators, generators, generators):
@@ -124,10 +118,10 @@ def generate_reflections(n):
     #     all_possible_roots.append('*'.join(subset))
     for subset in itertools.product(generators, generators, generators, generators, generators, generators, generators, generators):
         all_possible_roots.append('*'.join(subset))
-#     for subset in itertools.product(generators, generators, generators, generators, generators, generators, generators, generators, generators):
-#         all_possible_roots.append('*'.join(subset))
-#     for subset in itertools.product(generators, generators, generators, generators, generators, generators, generators, generators, generators, generators):
-#         all_possible_roots.append('*'.join(subset))
+    # for subset in itertools.product(generators, generators, generators, generators, generators, generators, generators, generators, generators):
+    #     all_possible_roots.append('*'.join(subset))
+    # for subset in itertools.product(generators, generators, generators, generators, generators, generators, generators, generators, generators, generators):
+    #     all_possible_roots.append('*'.join(subset))
     return(all_possible_roots)
 
 # Function to print results in LaTeX table
@@ -143,6 +137,7 @@ if __name__ == "__main__":
     n = 4
     fund = fundamental(n)
     generators = generate_reflections(n)
+    h_vectors = h_vector(n)
     nonzero_reflections = [] 
     nonzero_reflections_matrix_form = []
     scalar = []
@@ -152,7 +147,7 @@ if __name__ == "__main__":
         nonzero_reflections_matrix_form.append(a)
         for j in range(len(fund)):
             weyl_acting_fund = np.dot(a, fund[j])
-            for h in fund:
+            for h in h_vectors:
                 scalar_prod = np.dot(weyl_acting_fund, h)
                 if scalar_prod<0:
                     scalar.append(scalar_prod)
@@ -160,7 +155,8 @@ if __name__ == "__main__":
                     comp_list.append(temp_permutation)
     # for item in comp_list:
     #     print(item)
-    df = pd.DataFrame({'h': x.h.astype(int), '\varpi': x.fund.astype(int), 'Length': x.length, 'Scalar': x.scalar_product, 'Weyl': [int(s) for s in x.weyl if s.isdigit()]} for x in comp_list)
+    df = pd.DataFrame({'h': x.h, '\varpi': x.fund.astype(int), 'Length': x.length, 'Scalar': x.scalar_product, 'Weyl': [int(s) for s in x.weyl if s.isdigit()]} for x in comp_list)
     df_to_print = latex_with_lines(df)
     print(df_to_print)
+    pass
 
