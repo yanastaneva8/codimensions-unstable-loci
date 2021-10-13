@@ -3,8 +3,8 @@
 # Extremal Values for Codimensions of Unstable Loci
 Calculating extremal values for codimensions of unstable loci of SL_2 subgroups of SL_n
 
-Valdemar Tsanov (University of Bochum; valdemar.tsanov at rub.de)
-Yana Staneva (University of Cologne; ystaneva at math.uni-koeln.de, yanastaneva8 at gmail.com)
+- Valdemar Tsanov (University of Bochum; valdemar.tsanov at rub.de)
+- Yana Staneva (University of Cologne; ystaneva at math.uni-koeln.de, yanastaneva8 at gmail.com)
 
 Date: Oct 2021
 
@@ -33,6 +33,7 @@ Packages needed: numpy, itertools, pandas, tabulate, tqdm
 2. Open any .py script corresponding to the group type you are interested in using, e.g. E_6.py
 3. Scroll down to the function called _generate_reflections(n)_ and uncomment the line which contains the number of _generators_ of the desired length _L_ you wish to test, i.e. if you want to test reflections of length _L=5_, then the _generate_reflections(n)_ function should look like:
 
+```Python
 def generate_reflections(n):
     for i in range(1, n+1):
         generators.append("r"+str(i))
@@ -48,7 +49,7 @@ def generate_reflections(n):
     # for subset in itertools.product(generators, generators, generators, generators, generators, generators, generators, generators, generators, generators):
         all_possible_roots.append('*'.join(subset))
     return(all_possible_roots)
-    
+```
 4. You are now ready to run/debug the script.
 
 
