@@ -28,7 +28,6 @@ from tabulate import tabulate
 # Import package for loop progress bar in console
 import tqdm
 from tqdm import tqdm
-from numpy.linalg import inv
 
 # Class to store computations
 comp_list = []
