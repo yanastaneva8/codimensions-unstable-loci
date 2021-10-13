@@ -24,6 +24,9 @@ import itertools
 import pandas as pd
 import tabulate
 from tabulate import tabulate
+# Import package for loop progress bar in console
+import tqdm
+from tqdm import tqdm
 
 # Class to store computations
 comp_list = []
@@ -109,10 +112,10 @@ def generate_reflections(n):
     # all_possible_roots.extend(generators)    
     # for subset in itertools.product(generators, generators):
     #     all_possible_roots.append('*'.join(subset)) 
-    for subset in itertools.product(generators, generators, generators):
-        all_possible_roots.append('*'.join(subset))
-    # for subset in itertools.product(generators, generators, generators, generators):
+    # for subset in itertools.product(generators, generators, generators):
     #     all_possible_roots.append('*'.join(subset))
+    for subset in itertools.product(generators, generators, generators, generators):
+        all_possible_roots.append('*'.join(subset))
     # for subset in itertools.product(generators, generators, generators, generators, generators):
     #     all_possible_roots.append('*'.join(subset))
     # for subset in itertools.product(generators, generators, generators, generators, generators, generators):
@@ -146,7 +149,7 @@ if __name__ == "__main__":
     nonzero_reflections = [] 
     nonzero_reflections_matrix_form = []
     scalar = []
-    for i in generators:
+    for i in tqdm(generators):
         a = matrix_form(i)
         nonzero_reflections.append(i)
         nonzero_reflections_matrix_form.append(a)
@@ -169,13 +172,13 @@ if __name__ == "__main__":
 # # Main function to test specific fundamental weight
 # if __name__ == "__main__":
 #     n = 8
-#     fund = np.array([0,1,2,3,4,-4,-4,4]) 
+#     fund = np.array([0,0,0,0,1,-1,-1,1]) 
 #     generators = generate_reflections(n-2)
 #     h_vectors = h_vector(n)
 #     nonzero_reflections = [] 
 #     nonzero_reflections_matrix_form = []
 #     scalar = []
-#     for i in generators:
+#     for i in tqdm(generators):
 #         a = matrix_form(i)
 #         nonzero_reflections.append(i)
 #         nonzero_reflections_matrix_form.append(a)
