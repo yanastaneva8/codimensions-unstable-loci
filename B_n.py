@@ -126,7 +126,7 @@ if __name__ == "__main__":
     nonzero_reflections = [] 
     nonzero_reflections_matrix_form = []
     scalar = []
-    for i in generators:
+    for i in tqdm(generators):
         a = matrix_form(i)
         nonzero_reflections.append(i)
         nonzero_reflections_matrix_form.append(a)
