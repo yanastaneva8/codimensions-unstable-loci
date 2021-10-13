@@ -111,23 +111,15 @@ def generate_reflections(n):
         generators.append("r"+str(i))
     # all_possible_roots.extend(generators)    
     # for subset in itertools.product(generators, generators):
-    #     all_possible_roots.append('*'.join(subset)) 
     # for subset in itertools.product(generators, generators, generators):
-    #     all_possible_roots.append('*'.join(subset))
     # for subset in itertools.product(generators, generators, generators, generators):
-    #     all_possible_roots.append('*'.join(subset))
     for subset in itertools.product(generators, generators, generators, generators, generators):
-        all_possible_roots.append('*'.join(subset))
     # for subset in itertools.product(generators, generators, generators, generators, generators, generators):
-    #     all_possible_roots.append('*'.join(subset))
     # for subset in itertools.product(generators, generators, generators, generators, generators, generators, generators):
-    #     all_possible_roots.append('*'.join(subset))
     # for subset in itertools.product(generators, generators, generators, generators, generators, generators, generators, generators):
-    #     all_possible_roots.append('*'.join(subset))
     # for subset in itertools.product(generators, generators, generators, generators, generators, generators, generators, generators, generators):
-    #     all_possible_roots.append('*'.join(subset))
     # for subset in itertools.product(generators, generators, generators, generators, generators, generators, generators, generators, generators, generators):
-    #     all_possible_roots.append('*'.join(subset))
+        all_possible_roots.append('*'.join(subset))
     return(all_possible_roots)
 
 # Function to print results in LaTeX table
