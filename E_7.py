@@ -24,6 +24,9 @@ import itertools
 import pandas as pd
 import tabulate
 from tabulate import tabulate
+# Import package for loop progress bar in console
+import tqdm
+from tqdm import tqdm
 
 # Class to store computations
 comp_list = []
@@ -113,8 +116,8 @@ def generate_reflections(n):
     #     all_possible_roots.append('*'.join(subset))
     # for subset in itertools.product(generators, generators, generators, generators):
     #     all_possible_roots.append('*'.join(subset))
-    # for subset in itertools.product(generators, generators, generators, generators, generators):
-    #     all_possible_roots.append('*'.join(subset))
+    for subset in itertools.product(generators, generators, generators, generators, generators):
+        all_possible_roots.append('*'.join(subset))
     # for subset in itertools.product(generators, generators, generators, generators, generators, generators):
     #     all_possible_roots.append('*'.join(subset))
     # for subset in itertools.product(generators, generators, generators, generators, generators, generators, generators):
@@ -123,8 +126,8 @@ def generate_reflections(n):
     #     all_possible_roots.append('*'.join(subset))
     # for subset in itertools.product(generators, generators, generators, generators, generators, generators, generators, generators, generators):
     #     all_possible_roots.append('*'.join(subset))
-    for subset in itertools.product(generators, generators, generators, generators, generators, generators, generators, generators, generators, generators):
-        all_possible_roots.append('*'.join(subset))
+    # for subset in itertools.product(generators, generators, generators, generators, generators, generators, generators, generators, generators, generators):
+    #     all_possible_roots.append('*'.join(subset))
     return(all_possible_roots)
 
 # Function to print results in LaTeX table
@@ -136,7 +139,7 @@ def latex_with_lines(df, *args, **kwargs):
     return res.replace('\\\\\n', '\\\\ \\hline\n')
 
 
-# Main function to test all fundamental weights
+# # Main function to test all fundamental weights
 if __name__ == "__main__":
     n = 8
     fund = fundamental(n)
@@ -145,7 +148,7 @@ if __name__ == "__main__":
     nonzero_reflections = [] 
     nonzero_reflections_matrix_form = []
     scalar = []
-    for i in generators:
+    for i in tqdm(generators):
         a = matrix_form(i)
         nonzero_reflections.append(i)
         nonzero_reflections_matrix_form.append(a)
@@ -164,3 +167,28 @@ if __name__ == "__main__":
     print(df_to_print)
     pass
 
+# # Main function to test specific fundamental weight
+# if __name__ == "__main__":
+#     n = 8
+#     fund = np.array([0,0,0,0,0,2,-1,1]) 
+#     generators = generate_reflections(n-1)
+#     # h_vectors = h_vector(n)
+#     nonzero_reflections = [] 
+#     nonzero_reflections_matrix_form = []
+#     scalar = []
+#     for i in tqdm(generators):
+#         a = matrix_form(i)
+#         nonzero_reflections.append(i)
+#         nonzero_reflections_matrix_form.append(a)
+#         weyl_acting_fund = np.dot(a, fund)
+#         scalar_prod = np.dot(weyl_acting_fund, fund)
+#         if scalar_prod<0:
+#             scalar.append(scalar_prod)
+#             temp_permutation = Computations(fund, fund, i.count("r"), i, scalar_prod)
+#             comp_list.append(temp_permutation)  
+#     # for item in comp_list:
+#     #     print(item)
+#     df = pd.DataFrame({'h': x.fund.astype(int), '\varpi': x.fund.astype(int), 'Length': x.length, 'Scalar': x.scalar_product, 'Weyl': [int(s) for s in x.weyl if s.isdigit()]} for x in comp_list)
+#     df_to_print = latex_with_lines(df)
+#     print(df_to_print)
+#     pass
