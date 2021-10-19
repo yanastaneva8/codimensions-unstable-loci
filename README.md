@@ -1,6 +1,6 @@
 #codimensions-unstable-loci
 
-# Extremal Values for Codimensions of Unstable Loci
+# On reductive subgroups of reductive groups having invariants in almost all representations
 Calculating extremal values for codimensions of unstable loci of SL_2 subgroups of SL_n
 
 - Valdemar Tsanov (University of Bochum; valdemar.tsanov at rub.de)
